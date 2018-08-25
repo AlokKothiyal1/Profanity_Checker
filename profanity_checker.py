@@ -10,18 +10,17 @@ def read_file():
     check_profanity(content)
 
 def check_profanity(file_to_be_checked):
-    with urllib.request.urlopen("http://www.wdylike.appspot.com/?q="+file_to_be_checked) as response:
+   def check_profanity(file_to_be_checked):
+     file = requests.get("http://www.wdylike.appspot.com/?q="+file_to_be_checked)
+     output = file.text
+     print(output)
 
-        output = response.read()
-        print(output)
-
-    if output == b'true':
+     if output == 'true':
         print('PROFANITY ALERT!')
-    elif output == b'false':
+     elif output == 'false':
         print('No Curse Words')
-    else:
+     else:
         print('Problem scanning Document')
-
 read_file()
 
 #
